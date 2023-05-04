@@ -65,7 +65,7 @@
             <form method="post" action="/save-sales">
             <div class="mb-3">
               <select name="pid">
-                {%for i in products%}
+                {% for i in products %}
                 <option value="{{i[0]}}">{{i[1]}}</option>
                 {%endfor%}
                 </select>

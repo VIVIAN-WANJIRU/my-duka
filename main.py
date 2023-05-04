@@ -25,10 +25,11 @@ def products():
 @app.route('/sales')
 def sales():
     cur = conn.cursor()
-    cur.execute("select * from sales;")
+    cur.execute("select s.id,p.name,s.quantity,s.created_at from products as p join sales as s on s.pid=p.id;")
     sales = cur.fetchall()
+    products = cur.fetchall()
     print("sales")
-    return render_template('sales.html', sales=sales)
+    return render_template('sales.html', sales=sales, products=products)
 
 @app.route('/save-product', methods=['POST'])
 def save_product():
