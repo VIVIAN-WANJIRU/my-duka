@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link rel="stylesheet" href="//cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">IMS</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/products">Products</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/sales">Sales</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled">Stock</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="container main_products">
+        <div class="row content">
+          <div class="col-md-2">
+            <nav class="nav flex-column nav">
+                <a class="nav-link active" aria-current="page" href="#" style="text-decoration: none;">Nav Menu</a>
+                <a class="nav-link" href="#">Dashboard</a>
+                <a class="nav-link" href="/products">Products</a>
+                <a class="nav-link" href="/sales">Sales</a>
+                <a class="nav-link disabled">Stock</a>
+                <a class="nav-link disabled">Users</a>
+              </nav>
+          </div>
+          <div class="col-md-9">
+            <div class="row-md-4 btn_1">
+              <!-- Button trigger modal -->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  Add new product
+                </button>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form method="post" action="/save-product">
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Name</label>
+              <input type="text" name="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Buying Price</label>
+              <input type="text" name="bp" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Selling Price</label>
+              <input type="text" name="sp" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Quantity</label>
+              <input type="text" name="quantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            </div>                  
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row-md-8">
+    <table id="myTable">
+      <thead>
+      <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>buying price</th>
+      <th>selling price</th>
+      <th>quantity</th>
+      </tr>
+      </thead>
+      <tbody>
+        {% for i in rows %}
+        <tr>
+          <td>{{ i[0] }}</td>
+          <td>{{ i[1] }}</td>
+          <td>{{ i[2] }}</td>
+          <td>{{ i[3] }}</td>
+          <td>{{ i[4] }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script type="text/javascript" src="//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+<script>
+let table = new DataTable('#myTable');
+</script>
+
+
+</body>
+</html>
